@@ -1,0 +1,470 @@
+/*
+ * SOMA SANCTUM — Global Design System
+ * Philosophy: Sacred Protocol — Ritual Minimalism meets Clinical Luxury
+ * 
+ * Color Palette:
+ *   Deep Indigo:    #1A1F3B (primary background — oceanic depth, pre-dawn sky)
+ *   Warm Ivory:     #F5F1E8 (primary text — candlelight warmth, ancient parchment)
+ *   Matte Gold:     #C6A962 (sacred accent — aged relics, not shiny)
+ *   Soft Ash:       #D9D9D9 (secondary elements, lines, dividers)
+ *   Absolute Black: #0A0C1A (shadows and depths)
+ *
+ * Typography:
+ *   Display:  Cormorant Garamond 300/600 — ethereal, aristocratic
+ *   Body:     DM Sans 300/400 — clinical, precise
+ *   Protocol: DM Mono 400 — laboratory data
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* SOMA SANCTUM Custom Colors */
+  --color-soma-indigo: #1A1F3B;
+  --color-soma-ivory: #F5F1E8;
+  --color-soma-gold: #C6A962;
+  --color-soma-ash: #D9D9D9;
+  --color-soma-black: #0A0C1A;
+  --color-soma-indigo-light: #252B4E;
+  --color-soma-gold-dim: rgba(198, 169, 98, 0.3);
+}
+
+:root {
+  --radius: 0.125rem;
+  --background: oklch(0.13 0.04 265);
+  --foreground: oklch(0.96 0.01 80);
+  --card: oklch(0.16 0.04 265);
+  --card-foreground: oklch(0.96 0.01 80);
+  --popover: oklch(0.16 0.04 265);
+  --popover-foreground: oklch(0.96 0.01 80);
+  --primary: oklch(0.75 0.08 75);
+  --primary-foreground: oklch(0.13 0.04 265);
+  --secondary: oklch(0.18 0.04 265);
+  --secondary-foreground: oklch(0.85 0.01 80);
+  --muted: oklch(0.20 0.04 265);
+  --muted-foreground: oklch(0.65 0.02 80);
+  --accent: oklch(0.75 0.08 75);
+  --accent-foreground: oklch(0.13 0.04 265);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.75 0.08 75);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background-color: #0A0C1A;
+    color: #F5F1E8;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href] {
+    @apply cursor-pointer;
+  }
+
+  ::selection {
+    background-color: rgba(198, 169, 98, 0.25);
+    color: #F5F1E8;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0C1A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(198, 169, 98, 0.4);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(198, 169, 98, 0.7);
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      max-width: 1440px;
+    }
+  }
+
+  /* SOMA SANCTUM — Utility Classes */
+
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .font-mono-soma {
+    font-family: 'DM Mono', monospace;
+  }
+
+  .text-gold {
+    color: #C6A962;
+  }
+
+  .text-ivory {
+    color: #F5F1E8;
+  }
+
+  .text-ash {
+    color: #D9D9D9;
+  }
+
+  .bg-soma-indigo {
+    background-color: #1A1F3B;
+  }
+
+  .bg-soma-black {
+    background-color: #0A0C1A;
+  }
+
+  .border-gold {
+    border-color: #C6A962;
+  }
+
+  .border-gold-dim {
+    border-color: rgba(198, 169, 98, 0.3);
+  }
+
+  /* Gold divider line */
+  .gold-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C6A962, transparent);
+    opacity: 0.5;
+  }
+
+  .gold-line-left {
+    width: 60px;
+    height: 1px;
+    background-color: #C6A962;
+    opacity: 0.7;
+  }
+
+  /* Protocol label style */
+  .protocol-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #C6A962;
+    opacity: 0.8;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(198, 169, 98, 0.7);
+  }
+
+  /* Soma button — primary */
+  .soma-btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #C6A962;
+    border: 1px solid rgba(198, 169, 98, 0.5);
+    background: transparent;
+    transition: all 0.6s ease;
+    overflow: hidden;
+  }
+
+  .soma-btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(198, 169, 98, 0.08);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+
+  .soma-btn-primary:hover::before {
+    transform: scaleX(1);
+  }
+
+  .soma-btn-primary:hover {
+    border-color: rgba(198, 169, 98, 0.9);
+    color: #F5F1E8;
+    box-shadow: 0 0 30px rgba(198, 169, 98, 0.1);
+  }
+
+  /* Soma button — ghost */
+  .soma-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 232, 0.5);
+    background: transparent;
+    border: none;
+    transition: color 0.4s ease;
+  }
+
+  .soma-btn-ghost:hover {
+    color: #C6A962;
+  }
+
+  /* Frosted glass card */
+  .glass-card {
+    background: rgba(26, 31, 59, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(198, 169, 98, 0.15);
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.04;
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-10px) rotate(0.5deg);
+    }
+    66% {
+      transform: translateY(-5px) rotate(-0.5deg);
+    }
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes drawLine {
+    from { width: 0; opacity: 0; }
+    to { width: 100%; opacity: 0.5; }
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes particleFloat {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-slow-rotate {
+    animation: slowRotate 30s linear infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.9s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-gold {
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  .animate-draw-line {
+    animation: drawLine 1.2s ease-out forwards;
+  }
+
+  /* Stagger delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-800 { animation-delay: 0.8s; }
+  .delay-1000 { animation-delay: 1.0s; }
+  .delay-1200 { animation-delay: 1.2s; }
+  .delay-1500 { animation-delay: 1.5s; }
+
+  /* Initially hidden for animation */
+  .opacity-0-init {
+    opacity: 0;
+  }
+}
+
+/* Particle float keyframe for hero ambient particles */
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-60px) translateX(15px) scale(1);
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-120px) translateX(-10px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Input placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(245, 241, 232, 0.2);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+/* Smooth scroll for all anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default focus styles on buttons */
+button:focus-visible {
+  outline: 1px solid rgba(198, 169, 98, 0.5);
+  outline-offset: 3px;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
